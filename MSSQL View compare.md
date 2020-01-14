@@ -1,4 +1,11 @@
-Following procedure compares datatypes between two mssql databases
+Following procedure compares datatypes between two mssql databases. 
+
+This comparison is useful when you need to ensure matching data types in two databases. Tested database tools, such as Redgate, dbForge, etc. compare view definitions only based on their textual representation. Underlying types can be however different. 
+
+Consider following scenario.  Table X on source database has Primary key of type long. Table X on target database has Primary key of type string. There is a view vX that simply selects primary key from Table x. For mentioned compare tools the view vX is identical in source and target database. 
+
+Following script is useful if you wish to change Table data field, but out of backward compatibility reasons, you don't wish to change views. Logically, you will go through all the views and implement mapping of the columns to new data type. To ensure that you didn't forget any views, following script could be useful. 
+
 
 1) List columns and respecteed data types for all views in source database. 
 
